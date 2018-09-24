@@ -71,9 +71,7 @@ public class SellerController {
 			e.printStackTrace();
 			return new Result(false, "修改失败");
 		}
-	}
-
-
+	}	
 	
 	/**
 	 * 获取实体
@@ -112,21 +110,17 @@ public class SellerController {
 	public PageResult search(@RequestBody TbSeller seller, int page, int rows  ){
 		return sellerService.findPage(seller, page, rows);		
 	}
-
-
-	/**
-	 * 修改状态
-	 * @param seller
-	 * @return
-	 */
+	
 	@RequestMapping("/updateStatus")
 	public Result updateStatus(String sellerId,String status){
 		try {
-			sellerService.updateStatus(sellerId,status);
+			sellerService.updateStatus(sellerId, status);
 			return new Result(true, "成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new Result(false, "失败");
 		}
+		
 	}
+	
 }

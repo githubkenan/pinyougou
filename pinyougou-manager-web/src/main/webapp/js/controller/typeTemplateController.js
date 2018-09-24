@@ -1,5 +1,5 @@
  //控制层 
-app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemplateService,brandService,specificationService){
+app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemplateService,brandService,specificationService){	
 	
 	$controller('baseController',{$scope:$scope});//继承
 	
@@ -29,9 +29,10 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 				$scope.entity= response;		
 				
 				//转换字符串为json对象（集合）
-				$scope.entity.specIds= JSON.parse($scope.entity.specIds);//转换规格
-				$scope.entity.brandIds= JSON.parse($scope.entity.brandIds);//转换品牌
-				$scope.entity.customAttributeItems=JSON.parse($scope.entity.customAttributeItems);//转换扩展属性
+				$scope.entity.brandIds=  JSON.parse( $scope.entity.brandIds);
+				$scope.entity.specIds= JSON.parse($scope.entity.specIds);
+				$scope.entity.customAttributeItems = JSON.parse($scope.entity.customAttributeItems);
+				
 			}
 		);				
 	}
@@ -81,37 +82,36 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 			}			
 		);
 	}
-
-    //{id:1,text:'纤细'},{id:2,text:'福尔摩斯'},{id :3,text:'柯南'}
+	
 	$scope.brandList={data:[]};//品牌列表
     
 	//读取品牌列表
-	$scope.findBrandList=function () {
+	$scope.findBrandList=function(){
 		brandService.selectOptionList().success(
-			function (response) {
+			function(response){
 				$scope.brandList={data:response};
-            }
-		)
-    }
-
-    $scope.specList={data:[]};//规格列表
-    //读取规格列表
-    $scope.findspecList=function () {
-        specificationService.selectOptionList().success(
-            function (response) {
-                $scope.specList={data:response};
-            }
-        );
-    }
-
-    //新增扩展属性行
-	$scope.addTableRow=function () {
+			}
+		);		
+	}
+	
+	$scope.specList={data:[]};//规格列表
+	
+	//读取规格列表
+	$scope.findSpecList=function(){
+		specificationService.selectOptionList().success(
+				function(response){
+					$scope.specList={data:response};
+				}
+		);		
+	}
+	
+	//增加扩展属性行
+	$scope.addTableRow=function(){
 		$scope.entity.customAttributeItems.push({});
-    }
-
-    //删除扩展属性行
-   $scope.deleTableRow=function (index) {
-	   $scope.entity.customAttributeItems.splice(index,1);
-   }
-
+	}
+	//删除扩展属性行
+	$scope.deleTableRow=function(index){
+		$scope.entity.customAttributeItems.splice( index,1);
+	}
+	
 });	

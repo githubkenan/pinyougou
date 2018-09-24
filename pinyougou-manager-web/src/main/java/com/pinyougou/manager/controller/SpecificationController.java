@@ -2,12 +2,12 @@ package com.pinyougou.manager.controller;
 import java.util.List;
 import java.util.Map;
 
-import com.pinyougou.pojogroup.Specification;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.pinyougou.pojo.TbSpecification;
+import com.pinyougou.pojogroup.Specification;
 import com.pinyougou.sellergoods.service.SpecificationService;
 
 import entity.PageResult;
@@ -112,10 +112,10 @@ public class SpecificationController {
 	public PageResult search(@RequestBody TbSpecification specification, int page, int rows  ){
 		return specificationService.findPage(specification, page, rows);		
 	}
-
-	/*规格下拉列表的方法*/
+	
 	@RequestMapping("/selectOptionList")
-	public List<Map>selectOptionList(){
+	public List<Map> selectOptionList(){
 		return specificationService.selectOptionList();
 	}
+	
 }

@@ -3,5 +3,12 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="svn" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/pinyougou-content-interface" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/pinyougou-content-service" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/pinyougou-portal-web" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/pinyougou-search-interface" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/pinyougou-search-service" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/pinyougou-search-web" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/pinyougou-solr-util" vcs="svn" />
   </component>
 </project>
