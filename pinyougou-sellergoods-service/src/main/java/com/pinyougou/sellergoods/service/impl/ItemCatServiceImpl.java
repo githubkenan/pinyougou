@@ -1,5 +1,7 @@
 package com.pinyougou.sellergoods.service.impl;
 import java.util.List;
+
+import com.pinyougou.pojo.TbItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
@@ -11,6 +13,7 @@ import com.pinyougou.pojo.TbItemCatExample.Criteria;
 import com.pinyougou.sellergoods.service.ItemCatService;
 
 import entity.PageResult;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -98,12 +101,27 @@ public class ItemCatServiceImpl implements ItemCatService {
 		Page<TbItemCat> page= (Page<TbItemCat>)itemCatMapper.selectByExample(example);		
 		return new PageResult(page.getTotal(), page.getResult());
 	}
+
+
+	@Autowired
+	private RedisTemplate redisTemplate;
+
 	/* 根据上级 ID 查询列表*/
 	@Override
 	public List<TbItemCat> findByParentId(Long parentId) {
 		TbItemCatExample example=new TbItemCatExample();
         Criteria criteria = example.createCriteria();
+		// 设置条件:
         criteria.andParentIdEqualTo(parentId);
-        return itemCatMapper.selectByExample(example);
+		// 条件查询
+		//将模板ID放入缓存（以商品分类名称作为key）
+		//每次执行查询的时候，一次性读取缓存进行存储 (因为每次增删改都要执行此方法)
+		List<TbItemCat> itemCatList = findAll();
+		for(TbItemCat itemCat:itemCatList){
+			redisTemplate.boundHashOps("itemCat").put(itemCat.getName(), itemCat.getTypeId());
+		}
+		System.out.println("将模板ID放入缓存");
+
+		return itemCatMapper.selectByExample(example);
 	}
 }
