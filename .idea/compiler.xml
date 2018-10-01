@@ -11,6 +11,9 @@
         <module name="pinyougou-content-service" />
         <module name="pinyougou-dao" />
         <module name="pinyougou-manager-web" />
+        <module name="pinyougou-page-interface" />
+        <module name="pinyougou-page-service" />
+        <module name="pinyougou-page-web" />
         <module name="pinyougou-pojo" />
         <module name="pinyougou-portal-web" />
         <module name="pinyougou-search-interface" />
@@ -23,11 +26,16 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="freemarkerDemo" target="1.5" />
+      <module name="jmsDemo" target="1.7" />
       <module name="pinyougou-common" target="1.7" />
       <module name="pinyougou-content-interface" target="1.7" />
       <module name="pinyougou-content-service" target="1.7" />
       <module name="pinyougou-dao" target="1.7" />
       <module name="pinyougou-manager-web" target="1.7" />
+      <module name="pinyougou-page-interface" target="1.7" />
+      <module name="pinyougou-page-service" target="1.7" />
+      <module name="pinyougou-page-web" target="1.7" />
       <module name="pinyougou-parent" target="1.7" />
       <module name="pinyougou-pojo" target="1.7" />
       <module name="pinyougou-portal-web" target="1.7" />
@@ -38,7 +46,10 @@
       <module name="pinyougou-sellergoods-service" target="1.7" />
       <module name="pinyougou-shop-web" target="1.7" />
       <module name="pinyougou-solr-util" target="1.7" />
+      <module name="pinyougoupageinterface" target="1.7" />
       <module name="pinyougouprotalweb" target="1.7" />
+      <module name="springjms_consumer" target="1.7" />
+      <module name="springjms_producer" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

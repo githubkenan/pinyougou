@@ -1,16 +1,12 @@
 package com.pinyougou.manager.controller;
 import java.util.List;
-import java.util.Map;
 
-import com.pinyougou.pojogroup.Specification;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.pinyougou.pojo.TbSpecification;
-import com.pinyougou.pojogroup.Specification;
-import com.pinyougou.sellergoods.service.SpecificationService;
+import com.pinyougou.pojo.TbSpecificationOption;
+import com.pinyougou.sellergoods.service.SpecificationOptionService;
 
 import entity.PageResult;
 import entity.Result;
@@ -20,19 +16,19 @@ import entity.Result;
  *
  */
 @RestController
-@RequestMapping("/specification")
-public class SpecificationController {
+@RequestMapping("/specificationOption")
+public class SpecificationOptionController {
 
 	@Reference
-	private SpecificationService specificationService;
+	private SpecificationOptionService specificationOptionService;
 	
 	/**
 	 * 返回全部列表
 	 * @return
 	 */
 	@RequestMapping("/findAll")
-	public List<TbSpecification> findAll(){			
-		return specificationService.findAll();
+	public List<TbSpecificationOption> findAll(){			
+		return specificationOptionService.findAll();
 	}
 	
 	
@@ -42,18 +38,18 @@ public class SpecificationController {
 	 */
 	@RequestMapping("/findPage")
 	public PageResult  findPage(int page,int rows){			
-		return specificationService.findPage(page, rows);
+		return specificationOptionService.findPage(page, rows);
 	}
 	
 	/**
 	 * 增加
-	 * @param specification
+	 * @param specificationOption
 	 * @return
 	 */
 	@RequestMapping("/add")
-	public Result add(@RequestBody Specification specification){
+	public Result add(@RequestBody TbSpecificationOption specificationOption){
 		try {
-			specificationService.add(specification);
+			specificationOptionService.add(specificationOption);
 			return new Result(true, "增加成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -63,13 +59,13 @@ public class SpecificationController {
 	
 	/**
 	 * 修改
-	 * @param specification
+	 * @param specificationOption
 	 * @return
 	 */
 	@RequestMapping("/update")
-	public Result update(@RequestBody Specification specification){
+	public Result update(@RequestBody TbSpecificationOption specificationOption){
 		try {
-			specificationService.update(specification);
+			specificationOptionService.update(specificationOption);
 			return new Result(true, "修改成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -83,8 +79,8 @@ public class SpecificationController {
 	 * @return
 	 */
 	@RequestMapping("/findOne")
-	public Specification findOne(Long id){
-		return specificationService.findOne(id);		
+	public TbSpecificationOption findOne(Long id){
+		return specificationOptionService.findOne(id);		
 	}
 	
 	/**
@@ -95,7 +91,7 @@ public class SpecificationController {
 	@RequestMapping("/delete")
 	public Result delete(Long [] ids){
 		try {
-			specificationService.delete(ids);
+			specificationOptionService.delete(ids);
 			return new Result(true, "删除成功"); 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -111,12 +107,8 @@ public class SpecificationController {
 	 * @return
 	 */
 	@RequestMapping("/search")
-	public PageResult search(@RequestBody TbSpecification specification, int page, int rows  ){
-		return specificationService.findPage(specification, page, rows);		
+	public PageResult search(@RequestBody TbSpecificationOption specificationOption, int page, int rows  ){
+		return specificationOptionService.findPage(specificationOption, page, rows);		
 	}
 	
-	@RequestMapping("/selectOptionList")
-	public List<Map> selectOptionList(){
-		return specificationService.selectOptionList();
-	}
 }
